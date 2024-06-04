@@ -1,13 +1,3 @@
-"""
-input: Video.mp4
-output: key_frames/img.png
-        - number of frames
-        - video resolution
-        - FPS
-        - number of key frames
-functionality: extracts key_frames from video using ssim from scikit library
-"""
-
 import cv2
 from tqdm import tqdm
 import os
@@ -94,7 +84,10 @@ def extract_keyframes(video_path:str, output_dir:str="key_frames",skip_frame_rat
 
     cap.release()
 
-    print(f'Total key frames based on the threshold chosen : {len(key_frames)}')
+    return {
+            "Status" : "Success" if (len(key_frames) > 0) else "Failed",
+            "keyframes extracted" : len(key_frames)
+            }
 
 def calculate_mse(image1, image2):
     err = np.sum((image1.astype("float") - image2.astype("float")) ** 2)
@@ -131,5 +124,5 @@ def extract_keyframes_2(video_path:str, output_dir:str='key_frames',skip_frame_r
     cap.release()
     return {
             "Status" : "Success" if (n_extracted_frames > 0) else "Failed",
-            "keyframes extracted" : n_extracted_frames
+            "keyframes_extracted" : n_extracted_frames
             }
