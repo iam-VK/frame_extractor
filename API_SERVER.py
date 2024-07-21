@@ -3,6 +3,7 @@ from flask_cors import CORS
 from api_requests import multipart_post
 from frame_extractor import extract_keyframes_2, prepare_output_dir
 from zipper import zip
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -31,6 +32,7 @@ def keyframe_extract():
             # return send_file('key_frames.zip', mimetype = 'zip', as_attachment = True)
             post_response = multipart_post(url='http://127.0.0.1:5002/index',
                                            keyframes_dir="key_frames",
+                                           vid_name=os.path.splitext(file.filename)[0],
                                            file_type="zip",
                                            file_path="key_frames.zip")
             
