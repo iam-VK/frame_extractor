@@ -10,9 +10,16 @@ CORS(app)
 
 @app.route('/', methods=['POST','GET'])
 def service_status():
-    return {"Status":'Alive',
-            "End-points":{'[POST]':" /keyframe_extract"}
+    return {
+        "Status":'Alive',
+            "End-points":{
+                "/keyframe_extract": {
+                    "method":"[POST]",
+                    "paramater":"file_upload",
+                    "data": "video file"
+                }
             }
+        }
 
 @app.route("/keyframe_extract", methods=['POST'])
 def keyframe_extract():
