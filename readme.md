@@ -8,6 +8,12 @@ This repository contains a Flask-based web service that extracts keyframes from 
 - Save extracted keyframes to a specified directory.
 - Zip the keyframes directory for easy transfer.
 - REST API endpoints for checking service status and extracting keyframes.
+- Supports both **Standalone** and **Chained** modes.
+
+## Modes
+
+- **Standalone Mode**: Extracted keyframes are zipped and provided directly for download.
+- **Chained Mode**: Extracted keyframes are zipped and then posted to 'Vision Transformer' microservice for further processing.
 
 ## Installation
 
@@ -36,23 +42,28 @@ This repository contains a Flask-based web service that extracts keyframes from 
         "End-points": {
             "/keyframe_extract": {
                 "method":"[POST]",
-                "paramater":"file_upload",
-                "data": "video file"
+                "paramaters": {
+                        "file_upload":"video file for keyframes extraction",
+                        "mode":"optional parameter. ['standalone','chained'] chained is the default mode"
+                    }
                 }
+            }
         }
-    }
 - Keyframe Extraction
 
     - URL: /keyframe_extract
     - Method: POST
-    - Request: Multipart form data with video file (file_upload)
+    - Request: Multipart form data with video file (file_upload) and mode (optional)
     - Response: 
     ```json
     {
-    "Status": "Success",
-    "keyframes_extracted": <number of keyframes extracted>
+        "Frame Extractor service": {
+            "Status": "Success",
+            "keyframes_extracted": <number of keyframes extracted>
+        },
+        "File URL": "<URL to download the zipped keyframes>" // Only in standalone mode
+        "ViT service": {<response from the chained service>} // Only in chained mode
     }
-
 ## Project Structure
 ```bash
     keyframe-extractor/
@@ -61,8 +72,9 @@ This repository contains a Flask-based web service that extracts keyframes from 
     ├── frame_extractor.py    # Functions to extract keyframes from video
     ├── zipper.py             # Utility to zip directories
     ├── requirements.txt      # List of dependencies
-    └── README.md             # Project README
+    ├── README.md             # Project README
+    ├─────────────────────────
     ├── uploads               # Uploaded videos
-    └── key_frames            # Extracted keyframes
+    ├── key_frames            # Extracted keyframes
     ├── key_frames.zip        # Extracted keyframes zipped and ready to ship
     └── clean_cache.sh        # Deletes the cache files and cache directories 
