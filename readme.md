@@ -20,7 +20,7 @@ This repository contains a Flask-based web service that extracts keyframes from 
 1. Clone the repository:
    ```bash
    git clone https://github.com/iam-VK/frame_extractor.git
-   cd keyframe-extractor
+   cd frame_extractor
 2. Install the required dependencies:
     ```bash
     ./setup.sh
@@ -38,13 +38,13 @@ This repository contains a Flask-based web service that extracts keyframes from 
     - Response:
     ```json
     {
-        "Status": "Alive",
-        "End-points": {
+        "status": "Alive",
+        "endpoints": {
             "/keyframe_extract": {
                 "method":"[POST]",
                 "paramaters": {
                         "file_upload":"video file for keyframes extraction",
-                        "mode":"optional parameter. ['standalone','chained'] chained is the default mode"
+                        "mode":"optional parameter, can be 'standalone' or 'chained' (default: 'chained')"
                     }
                 }
             }
@@ -73,8 +73,11 @@ This repository contains a Flask-based web service that extracts keyframes from 
     ├── zipper.py             # Utility to zip directories
     ├── requirements.txt      # List of dependencies
     ├── README.md             # Project README
-    ├─────────────────────────
+    ├── setup.sh              # Setup virtual env and install dependencies
+    ├── run.sh                # Starts the microservice  
+    └── clean_cache.sh        # Deletes the cache files and cache directories 
+    |──────────────Cache files──────────────
     ├── uploads               # Uploaded videos
     ├── key_frames            # Extracted keyframes
-    ├── key_frames.zip        # Extracted keyframes zipped and ready to ship
-    └── clean_cache.sh        # Deletes the cache files and cache directories 
+    └── key_frames.zip        # Extracted keyframes zipped and ready to ship
+    

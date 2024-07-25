@@ -11,13 +11,13 @@ CORS(app)
 @app.route('/', methods=['POST','GET'])
 def service_status():
     return {
-        "Status":'Alive',
-            "End-points": {
+        "status":'Alive',
+            "endpoints": {
                 "/keyframe_extract": {
                     "method":"[POST]",
                     "parameters": {
                         "file_upload":"video file for keyframes extraction",
-                        "mode":"optional parameter. ['standalone','chained'] chained is the default mode"
+                        "mode":"optional parameter, can be 'standalone' or 'chained' (default: 'chained')"
                     }
                 }
             }

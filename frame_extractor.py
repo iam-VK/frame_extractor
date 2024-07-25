@@ -124,5 +124,6 @@ def extract_keyframes_2(video_path:str, output_dir:str='key_frames',skip_frame_r
     cap.release()
     return {
             "Status" : "Success" if (n_extracted_frames > 0) else "Failed",
-            "keyframes_extracted" : n_extracted_frames
+            "keyframes_extracted" : n_extracted_frames,
+            "video_file":video_path.replace("uploads/","")
             }
