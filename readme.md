@@ -1,4 +1,5 @@
-# Keyframe Extractor
+# Keyframe Extractor Microservice
+Part of Video Search Engine Project
 
 This repository contains a Flask-based web service that extracts keyframes from uploaded videos using Structural Similarity Index (SSIM) and Mean Squared Error (MSE) as metrics. The extracted keyframes are then zipped and can be posted to another service.
 
@@ -28,7 +29,7 @@ This repository contains a Flask-based web service that extracts keyframes from 
 1. Run the Flask application:
     ```bash
     ./run.sh
-2. The service will be available at http://0.0.0.0:5001.
+2. The service will be available at http://0.0.0.0:5001
 
 ## Endpoints
 - Service Status
@@ -66,7 +67,7 @@ This repository contains a Flask-based web service that extracts keyframes from 
     }
 ## Project Structure
 ```bash
-    keyframe-extractor/
+    frame_extractor/
     ├── app.py                # Flask application
     ├── api_requests.py       # Utility for multipart POST request
     ├── frame_extractor.py    # Functions to extract keyframes from video

@@ -17,7 +17,7 @@ def get_video_prop(video_path:str):
 
     fps = cap.get(cv2.CAP_PROP_FPS)
     print(f'FPS : {fps:0.2f}')
-
+    
     cap.release()
     
     return n_frames, fps, height, width
