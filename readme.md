@@ -1,7 +1,9 @@
 # Keyframe Extractor Microservice
-Part of Video Search Engine Project
+**Part of the Video Search Engine Project**  
 
 This repository contains a Flask-based web service that extracts keyframes from uploaded videos using Structural Similarity Index (SSIM) and Mean Squared Error (MSE) as metrics. The extracted keyframes are then zipped and can be posted to another service.
+
+![alt text](frame-extractor_architecture.png)
 
 ## Features
 
@@ -17,26 +19,31 @@ This repository contains a Flask-based web service that extracts keyframes from 
 - **Chained Mode**: Extracted keyframes are zipped and then posted to 'Vision Transformer' microservice for further processing.
 
 ## Installation
+### Prerequisites
+- Python 3.12
 
+### Steps  
 1. Clone the repository:
    ```bash
    git clone https://github.com/iam-VK/frame_extractor.git
    cd frame_extractor
+   ````
 2. Install the required dependencies:
     ```bash
     ./setup.sh
-## Usage
-1. Run the Flask application:
-    ```bash
+    ```
+3. Run the Flask application:  
+    ```bash  
     ./run.sh
-2. The service will be available at http://0.0.0.0:5001
+    ```  
+4. The service will be available at `http://0.0.0.0:5001`
 
 ## Endpoints
-- Service Status
+- ### Service Status
 
-    - URL: /
-    - Method: GET or POST
-    - Response:
+    - **URL**: `/`
+    - **Method**: `GET` or `POST`
+    - **Response**:
     ```json
     {
         "status": "Alive",
@@ -50,12 +57,12 @@ This repository contains a Flask-based web service that extracts keyframes from 
                 }
             }
         }
-- Keyframe Extraction
+- ### Keyframe Extraction
 
-    - URL: /keyframe_extract
-    - Method: POST
-    - Request: Multipart form data with video file (file_upload) and mode (optional)
-    - Response: 
+    - **URL**: `/keyframe_extract`
+    - **Method**: `POST`
+    - **Request**: Multipart form data with video file (file_upload) and mode (optional)
+    - **Response**: 
     ```json
     {
         "Frame Extractor service": {
@@ -65,7 +72,7 @@ This repository contains a Flask-based web service that extracts keyframes from 
         "File URL": "<URL to download the zipped keyframes>" // Only in standalone mode
         "ViT service": {<response from the chained service>} // Only in chained mode
     }
-## Project Structure
+<!-- ## Project Structure
 ```bash
     frame_extractor/
     ├── app.py                # Flask application
@@ -81,4 +88,4 @@ This repository contains a Flask-based web service that extracts keyframes from 
     ├── uploads               # Uploaded videos
     ├── key_frames            # Extracted keyframes
     └── key_frames.zip        # Extracted keyframes zipped and ready to ship
-    
+     -->

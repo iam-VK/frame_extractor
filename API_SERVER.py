@@ -45,7 +45,7 @@ def keyframe_extract():
                 return {"Frame Extractor service":key_frames_return,
                         "File URL": url_for('download_file', filename='key_frames.zip', _external=True)}
             
-            post_response = multipart_post(url='http://127.0.0.1:5002/index',
+            post_response = multipart_post(url='http://127.0.0.1:5002/video-index',
                                            keyframes_dir="key_frames",
                                            vid_name=os.path.splitext(file.filename)[0],
                                            file_type="zip",
